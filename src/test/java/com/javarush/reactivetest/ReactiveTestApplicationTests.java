@@ -21,36 +21,36 @@ class ReactiveTestApplicationTests {
 
     @Test
     public void fluxJust() {
-        Flux<String> fruitFlux = Flux.just("Apple", "Orange", "Grape", "Banana", "Strawberry");
+        Flux<String> mealFlux = Flux.just("БигМак", "Чизбургер", "Гамбургер", "Картошка", "Кола");
 
-        fruitFlux.subscribe(
-                f -> System.out.println("Here’s some fruit: " + f));
+        mealFlux.subscribe(
+                f -> System.out.println("Порция фастфуда: " + f));
 
-        StepVerifier.create(fruitFlux)
-                .expectNext("Apple")
-                .expectNext("Orange")
-                .expectNext("Grape")
-                .expectNext("Banana")
-                .expectNext("Strawberry")
+        StepVerifier.create(mealFlux)
+                .expectNext("БигМак")
+                .expectNext("Чизбургер")
+                .expectNext("Гамбургер")
+                .expectNext("Картошка")
+                .expectNext("Кола")
                 .verifyComplete();
     }
 
 
     @Test
     public void fluxFromArray() {
-        String[] fruits = new String[]{
-                "Apple", "Orange", "Grape", "Banana", "Strawberry"};
-        Flux<String> fruitFlux = Flux.fromArray(fruits);
+        String[] meal = new String[]{
+                "БигМак", "Чизбургер", "Гамбургер", "Картошка", "Кола"};
+        Flux<String> mealFlux = Flux.fromArray(meal);
 
-        fruitFlux.subscribe(
-                f -> System.out.println("Here’s some fruit: " + f));
+        mealFlux.subscribe(
+                f -> System.out.println("Порция фастфуда: " + f));
 
-        StepVerifier.create(fruitFlux)
-                .expectNext("Apple")
-                .expectNext("Orange")
-                .expectNext("Grape")
-                .expectNext("Banana")
-                .expectNext("Strawberry")
+        StepVerifier.create(mealFlux)
+                .expectNext("БигМак")
+                .expectNext("Чизбургер")
+                .expectNext("Гамбургер")
+                .expectNext("Картошка")
+                .expectNext("Кола")
                 .verifyComplete();
     }
 
@@ -58,35 +58,35 @@ class ReactiveTestApplicationTests {
 
     @Test
     public void fluxFromIterable() {
-        List<String> fruitList = new ArrayList<>();
-        fruitList.add("Apple");
-        fruitList.add("Orange");
-        fruitList.add("Grape");
-        fruitList.add("Banana");
-        fruitList.add("Strawberry");
+        List<String> mealList = new ArrayList<>();
+        mealList.add("БигМак");
+        mealList.add("Чизбургер");
+        mealList.add("Гамбургер");
+        mealList.add("Картошка");
+        mealList.add("Кола");
 
-        Flux<String> fruitFlux = Flux.fromIterable(fruitList);
+        Flux<String> mealFlux = Flux.fromIterable(mealList);
 
-        StepVerifier.create(fruitFlux)
-                .expectNext("Apple")
-                .expectNext("Orange")
-                .expectNext("Grape")
-                .expectNext("Banana")
-                .expectNext("Strawberry")
+        StepVerifier.create(mealFlux)
+                .expectNext("БигМак")
+                .expectNext("Чизбургер")
+                .expectNext("Гамбургер")
+                .expectNext("Картошка")
+                .expectNext("Кола")
                 .verifyComplete();
     }
 
     @Test
     public void fluxFromStream() {
-        Stream<String> fruitStream =
-                Stream.of("Apple", "Orange", "Grape", "Banana", "Strawberry");
-        Flux<String> fruitFlux = Flux.fromStream(fruitStream);
-        StepVerifier.create(fruitFlux)
-                .expectNext("Apple")
-                .expectNext("Orange")
-                .expectNext("Grape")
-                .expectNext("Banana")
-                .expectNext("Strawberry")
+        Stream<String> mealStream =
+                Stream.of("БигМак", "Чизбургер", "Гамбургер", "Картошка", "Кола");
+        Flux<String> mealFlux = Flux.fromStream(mealStream);
+        StepVerifier.create(mealFlux)
+                .expectNext("БигМак")
+                .expectNext("Чизбургер")
+                .expectNext("Гамбургер")
+                .expectNext("Картошка")
+                .expectNext("Кола")
                 .verifyComplete();
     }
 
@@ -125,6 +125,7 @@ class ReactiveTestApplicationTests {
     public void mergeFluxes() {
         Flux<String> characterFlux = Flux.just("Brad Pitt", "Tom Cruise", "Pierce Brosnan")
                 .delayElements(Duration.ofMillis(500));
+
         Flux<String> carFlux = Flux
                 .just("Lamborghini", "Toyota", "Aston Martin")
                 .delaySubscription(Duration.ofMillis(250))
